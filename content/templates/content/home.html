@@ -1,0 +1,58 @@
+{% extends 'content/index.html' %}
+{% load static %}
+
+{% block title %}События  {% endblock %}
+{% block main %}
+
+    <h2 class="events-h2">Турниры</h2>
+
+    <div class="tournaments">
+        {% for tournament in latest_tournaments %}
+            <div class="tournament">
+                <a href="{% url 'dtour' tournament.id %}">
+                    <img src="{% static tournament.logo|cut:'content/static/' %}" alt="{{ tournament.name }}">
+                </a>
+                <div class="tournament-info">
+                    <div class="tournament-dates">
+                        <div class="tournament-date">{{ tournament.start_date }}</div>
+                        <div class="tournament-date">{{ tournament.end_date }}</div>
+                    </div>
+                    <h2 class="tournament-title"><a href="{% url 'dtour' tournament.id %}">{{ tournament.name }}</a></h2>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <button class="go-events"><a href="{% url 'tournaments' %}">Перейти к турнирам</a></button>
+
+    <h2 class="events-h2">Лагеря</h2>
+        <div class="tournaments">
+        {% for camp in latest_camps %}
+            <div class="tournament">
+                <a href="{% url 'dcamp' camp.id %}">
+                    <img src="{% static camp.logo|cut:'content/static/' %}" alt="{{ tournament.name }}">
+                </a>
+                <div class="tournament-info">
+                    <div class="tournament-dates">
+                        <div class="tournament-date">{{ camp.start_date }}</div>
+                        <div class="tournament-date">{{ camp.end_date }}</div>
+                    </div>
+                    <h2 class="tournament-title"><a href="{% url 'dcamp' camp.id %}">{{ camp.name }}</a></h2>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+        <button class="go-events"><a href="{% url 'camps' %}">Перейти к лагерям</a></button>
+
+
+
+    <style type="text/css">
+      .tournament {
+        border: none !important;
+      }
+      .go-events {
+        margin: 5%;
+      }
+    </style>
+
+  {% endblock %}

@@ -1,0 +1,193 @@
+{% extends 'content/index.html' %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+{% block main %}
+<section>
+    <div class="hero-wrap">
+	    <div class="home-slider owl-carousel">
+	      <div class="slider-item" style="background-image:url({% static 'content/images/fp_camp_tallinn.jpg' %});">
+	      	<div class="overlay"></div>
+	        <div class="container">
+	          <div class="row no-gutters slider-text align-items-center justify-content-center">
+		          <div class="col-md-12 ftco-animate">
+		          	<div class="text w-100 text-center">
+			            <h1 class="mb-3">Лагерь footballplanet в таллине</h1>
+                  <h2>Испанский футбол в Эстонии</h2>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+	      </div>
+
+	      <div class="slider-item" style="background-image:url({% static 'content/images/dsc00501-scaled.jpg' %});">
+	      	<div class="overlay"></div>
+	        <div class="container">
+	          <div class="row no-gutters slider-text align-items-center justify-content-center">
+		          <div class="col-md-12 ftco-animate">
+		          	<div class="text w-100 text-center">
+			            <h1 class="mb-3">Достигай совершенства вместе с нами</h1>
+                  <h2>Best Builder in the World</h2>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+	      </div>
+
+	      <div class="slider-item" style="background-image:url({% static 'content/images/find_youngest_team_1920px.png' %});">
+	      	<div class="overlay"></div>
+	        <div class="container">
+	          <div class="row no-gutters slider-text align-items-center justify-content-center">
+		          <div class="col-md-12 ftco-animate">
+		          	<div class="text w-100 text-center">
+			            <h1 class="mb-3">Тренировки для самых юных футболистов</h1>
+                  <h2>Хочу на тренировку!</h2>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+
+</section>
+
+<section style="background-image:url({% static 'content/images/person_training_img_1920px.png' %});" class="ind-tr-main">
+  <h2>ИНДИВИДУАЛЬНЫЕ ТРЕНИРОВКИ<br> ДЛЯ ВАШЕГО РЕБЕНКА<br><br><p>Footballplanet проводит индвидуальный<br> и минигрупповые тренировки.<br> Тренировки направлены на развитие координации,<br> технических навыков игроков,<br> когнитивных функций организма.
+
+</p><br><a href="{% url 'training' %}">Записаться на тренировку</a></h2>
+
+
+</section>
+
+<section style="background-color: #1373F1; height: 100px; display: flex; justify-content: center; align-items: center; margin-top: 70px; margin-bottom: 50px;">
+  <h2 style="color: white; font-weight: 555; text-align: center;">СОБЫТИЯ</h2>
+</section>
+
+    <div class="tournaments">
+        {% for event in events %}
+            <div class="tournament">
+                <a href="{% url 'dtour' event.id %}">
+                    <img src="{% static event.logo|cut:'content/static/' %}" alt="{{ event.name }}">
+                </a>
+                <div class="tournament-info">
+                    <div class="tournament-dates">
+                        <div class="tournament-date">{{ event.start_date }}</div>
+                        <div class="tournament-date">{{ event.end_date }}</div>
+                    </div>
+                    <h2 class="tournament-title"><a href="{% url 'dtour' event.id %}">{{ event.name }}</a></h2>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <button class="go-events"><a href="{% url 'tournaments' %}">Перейти к Событиям</a></button>
+
+    
+
+
+
+    <style type="text/css">
+      .tournament {
+        border: none !important;
+      }
+      .go-events {
+        margin: 5%;
+      }
+    </style>
+
+<section class="news-body-fp">
+
+<section style="background-color: #1373F1; height: 100px; display: flex; justify-content: center; align-items: center; margin-bottom: 50px;margin-top: 70px;">
+  <h2 style="color: white; font-weight: 555; text-align: center; ">НОВОСТИ</h2>
+</section>
+
+    <div class="tournaments">
+        {% for new in news %}
+            <div class="tournament">
+                <a href="{% url 'dnews' new.id %}">
+                    <img src="{% static new.photo|cut:'content/static/' %}" alt="{{ tournament.name }}">
+                </a>
+                <div class="tournament-info">
+                    <div class="tournament-dates">
+                        <div class="tournament-date">{{ new.time_of_publication }}</div>
+                    </div>
+                    <h2 class="tournament-title"><a href="{% url 'dnews' new.id %}">{{ new.name }}</a></h2>
+                    <p>{{ new.autor }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <button class="go-events"><a href="{% url 'news' %}">Перейти к Новостям</a></button>
+
+  
+</section>
+
+<section style="background-color: #1373F1; height: 100px; display: flex; justify-content: center; align-items: center; margin-top: 70px;">
+  <h2 style="color: white; font-weight: 555; text-align: center;">ПРЕИМУЩЕСТВА СЕРВИСА</h2>
+</section>
+
+
+    <section class="ftco-section ftco-no-pt ftco-no-pb">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+            <div class="media block-6 d-block text-center pt-md-4">
+              <img id="ball-info" src="{% static 'content/images/ball.png' %}">
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">Работа с тренером 1 на 1</h3>
+                <p>FootballPlanet проводит тренировки как индивидуальные в формате 1на1, так и малых группах до 10 человек. Индивидуальные тренировки направлены на то, чтобы подтянуть определённые моменты в навыках футболиста.</p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+            <div class="media block-6 d-block text-center pt-md-4">
+              <img id="ball-info" src="{% static 'content/images/ball.png' %}">
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">Работа в малых группах</h3>
+                <p>Тренировки в малых группах от 2 до 10 человек. Это наиболее популярный формат тренировок. Для данного вида тренировок мы комплектуем группы равными по уровню развития игроков. Тренировки происходят с максимальной отдачей как игроков, так и тренера. Игрок получает не только технические навыки, но так же очень сильно развивается выносливость и понимание игровых ситуаций.</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+            <div class="media block-6 d-block text-center pt-md-4">
+              <img id="ball-info" src="{% static 'content/images/ball.png' %}">
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">Постоянный контакт с мячом</h3>
+                <p>В течении всех наших тренировок, игрок имеет постоянный контакт с мячом. Все направлено на развитие чувства касания мяча и техники игрока.</p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+            <div class="media block-6 d-block text-center pt-md-4">
+              <img id="ball-info" src="{% static 'content/images/ball.png' %}">
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">Тренировки в любое время года</h3>
+                <p>Условия в зале настолько комфортные, что тренировки проводятся круглогодично. Поле имеет травянное искусственное покрытие. Летом температура регулируется с помощью открытых окон, либо с помощью 8 кондиционеров. Зимой поддерживается естественная температура в помещении 14-17 градусов.</p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+            <div class="media block-6 d-block text-center pt-md-4">
+              <img id="ball-info" src="{% static 'content/images/ball.png' %}">
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">Все включено</h3>
+                <p>Все дети, регистрирующиеся в нашей школе индивидуального мастерства Footballplanet получают комплект формы для занятий. Если возникает необходимость дополнительной амуниции для занятий, то родители всегда могут купить ее в нашем онлайн-магазине по адресу <a href="footballplanetshop.ee">footballplanetshop.ee</a></p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+            <div class="media block-6 d-block text-center pt-md-4">
+              <img id="ball-info" src="{% static 'content/images/ball.png' %}">
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">Аренда поля</h3>
+                <p>Все любители футбола могут арендовать нашу площадку для игры с друзьями или для любых других целей. Для этого выберите в меню "Аренда поля"</p>
+              </div>
+            </div>      
+          
+        </div>
+    </section>
+		
+
+    
+
+{% endblock %}

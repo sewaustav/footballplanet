@@ -1,0 +1,52 @@
+{% extends 'content/index.html' %}
+{% load static %}
+
+{% block title %}
+    {{ camp.name }}
+{% endblock %}
+
+{% block main %}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static camp.logo|cut:'content/static/' %});" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>   
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+          <div class="col-md-9 ftco-animate pb-5">
+          	
+            <h1 class="mb-0 bread">{{ camp.name }}</h1>
+            <p class="camp-description-fp">{{ camp.description }}</p>
+            <p class="breadcrumbs mb-2"><span class="mr-2"><a href="{% url 'main' %}">Главная <i class="ion-ios-arrow-forward"></i></a></span> <span><a href="{% url 'events' %}">События <i class="ion-ios-arrow-forward"></i></a></span> <span>Лагеря <i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+</section>
+
+<section class="camps-section-fp">
+	<h2 class="events-h2">{{ camp.name }}</h2>
+	<h2 class="camps-h2">Видео</h2>
+	<div class="yt-window-fp">{{ camp.mini_player_code|safe }}</div>
+	<h2 class="camps-h2">Фотогалерея</h2>
+	<div class="tournaments">
+		{% for photo in camp.photo_gallery.all %}
+		<div class="tournament">
+            <img class="photo-galety-fp" src="{% static photo.image|cut:'content/static/' %}" alt="{{ photo.description }}">
+            <p>{{ photo.description }}</p>
+		</div>
+		{% endfor %}
+	</div>
+	<h2 class="camps-h2">Тренера</h2>
+    <div class="tournaments">
+        {% for training in camp.trainings.all %}
+            <div class="tournament">
+            	<img src="{% static training.trainer.pcoach|cut:'content/static/' %}" alt="{{ training.trainer }}">
+                <p>{{ training.trainer }}</p>
+                <p>{{ training.training_description }}</p>
+                <!-- Add more fields as needed -->
+            </div>
+        {% endfor %}
+    </div>
+
+
+</section>
+
+{% endblock %}

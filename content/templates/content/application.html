@@ -1,0 +1,55 @@
+{% extends 'content/index.html' %}
+{% load static %}
+
+{% block title %}Подать заявку{% endblock %}
+
+{% block main %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'content/images/tournaments.jpg' %});" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>   
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+          <div class="col-md-9 ftco-animate pb-5">
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="{% url 'main' %}">Главная <i class="ion-ios-arrow-forward"></i></a></span> <span>Подать заявку <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-0 bread">Подать заявку</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section class="application-section-fp">
+    <div class="application-fp">
+        <h2>Заявка на участие в турнире</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="{{ form.name.id }}">Название(в названии укажите категорию)</label>
+            {{ form.name }}
+            
+            <label for="{{ form.logo.id }}">Логотип</label>
+            {{ form.logo }}
+            
+            <label for="{{ form.tournament.id }}">Турнир</label>
+            {{ form.tournament }}
+            
+            <label for="{{ form.country.id }}">Страна</label>
+            {{ form.country }}
+            
+            <label for="{{ form.countOfPlayers.id }}">Количество игроков</label>
+            {{ form.countOfPlayers }}
+            
+            <label for="{{ form.coach.id }}">Тренер команды</label>
+            {{ form.coach }}
+            
+            <label for="{{ form.email.id }}">E-mail</label>
+            {{ form.email }}
+            
+            <label for="{{ form.pnumber.id }}">Номер телефона</label>
+            {{ form.pnumber }}
+            
+            <label for="{{ form.info.id }}">Дополнительная информация</label>
+            {{ form.info }}
+            
+            <button type="submit" id="submit-btn">Далее</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

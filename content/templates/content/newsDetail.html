@@ -1,0 +1,32 @@
+{% extends 'content/index.html' %}
+{% load static %}
+
+{% block title %}
+    {{ news.name }}
+{% endblock %}
+
+{% block main %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static news.photo|cut:'content/static/' %});" data-stellar-background-ratio="0.5">
+  	<div class="overlay"></div>   
+  	<div class="container">
+    	<div class="row no-gutters slider-text align-items-end">
+      		<div class="col-md-9 ftco-animate pb-5">
+          		<p class="breadcrumbs mb-2"><span class="mr-2"><a href="{% url 'main' %}">Главная <i class="ion-ios-arrow-forward"></i></a></span> <span><a href="{% url 'news' %}">Новости <i class="ion-ios-arrow-forward"></i></a></span> <span>{{ news.name }} <i class="ion-ios-arrow-forward"></i></span></p>
+            	<h1 class="mb-0 bread">{{ news.name }}</h1>
+      		</div>
+    	</div>
+  	</div>
+</section>
+<section class="detail-news-fp">
+	<div class="news-area-fp">
+		<h2 class="events-h2">{{ news.name }}</h2>
+		<img src="{% static news.photo|cut:'content/static/' %}" alt="{{ el.name }}">
+		<p>{{ news.autor }}</p>
+		<p>{{ news.time_of_publication }}</p>
+		<div class="news-text-fp">{{ news.text|linebreaksbr }}</div>
+
+		
+	</div>
+</section>
+
+{% endblock %}

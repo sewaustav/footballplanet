@@ -1,0 +1,123 @@
+{% extends 'content/index.html' %}
+{% load static %}
+
+{% block title %}Аренда поля{% endblock %}
+
+{% block main %}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'content/images/rent-header.jpg' %});" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>   
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+          <div class="col-md-9 ftco-animate pb-5">
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="{% url 'main' %}">Главная <i class="ion-ios-arrow-forward"></i></a></span> <span>Аренда поля <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-0 bread">Аренда поля</h1>
+          </div>
+        </div>
+      </div>
+</section>
+
+<section class="field-fp info-contact-fp">
+	<div class="img-rent">
+		<img src="{% static 'content/images/football-field.jpg' %}">
+	</div>
+	<div class="box-contact-fp">
+   		<div class="contact-text-fp">
+			<div class="adress-fp">
+				<h3>Адрес:</h3>
+				<p>Kalda 9a, Tallinn, Estonia</p>
+			</div>
+			<div class="phone-number-fp">
+				<p>Nikita Martynov +372 5622 5993 (RUS, EST)</p>
+			</div>
+			<div class="google-maps-fp-contact">
+			   	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2031.9452812406175!2d24.634708776446036!3d59.38394020664899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x469295a29fe512bf%3A0xd69a05615ec2fd0c!2zS2FsZGEgOUEsIDExNjI1IFRhbGxpbm4sINCt0YHRgtC-0L3QuNGP!5e0!3m2!1sru!2ses!4v1701891017348!5m2!1sru!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+		</div>
+	</div>
+	<div class="contact-wrap w-100 p-md-5 p-4 contact-area-fp">
+					<h3 class="mb-4">Свяжитесь с нами</h3>
+					<div id="form-message-warning" class="mb-4"></div> 
+      				<div id="form-message-success" class="mb-4">
+		            	<form method="POST" id="contact-form-fp">
+		            		{% csrf_token %}
+		            		{{ form.as_p }}
+		            		<button id="form-button-fp" type="submit">Отправить</button>
+		            	</form>
+      				</div>
+					
+				</div>
+</section>
+
+<style type="text/css">
+		.contact-text-fp {
+			color: black;
+		}
+		.contact-text-fp h3 {
+			font-weight: 550;
+		}
+		.img-rent  img{
+			width: 80%;
+			height: auto;
+			margin: 5%;
+			display: block;
+		}
+
+    	.social-media-fp ul li {
+    		list-style-type: none;
+    	}
+    	.social-media-fp ul li img {
+    		height: 50px;
+    		width: 50px;
+    	}
+    	@media only screen and (max-width: 1000px) {
+	        .contact-text-fp {
+	            order: 1; 
+	        }
+	        .google-maps-fp-contact {
+	            order: 2; 
+	            overflow: hidden;
+	            position: relative;
+	            padding-bottom: 75%; 
+	            height: 0;
+	            margin-bottom: 20px;
+	            
+	        }
+	        .google-maps-fp-contact iframe {
+	        	position: absolute;
+	            top: 0;
+	            left: 0;
+	            width: 100%;
+	            height: 100%;
+
+	        }
+	        
+	        .contact-wrap {
+	        	margin-top: 50px;
+	            order: 3; 
+	        }
+	    }
+
+	    
+	    @media only screen and (min-width: 1000px) {
+	        .contact-text-fp {
+	            width: 30%; 
+	            float: left; 
+	        }
+	        .google-maps-fp-contact {
+	            width: 50%; 
+	            float: right; 
+	            margin-right: 15%;
+	            height: 60%;
+	        }
+	        .contact-wrap {
+	            clear: both; 
+	            margin-top: 50px;
+	        }
+	        .box-contact-fp {
+	        	height: 450px;
+	        }
+	    }
+    </style>
+
+{% endblock %}

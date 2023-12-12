@@ -1,0 +1,52 @@
+{% extends 'content/index.html' %}
+{% load static %}
+
+{% block title %}Новости{% endblock %}
+{% block main %}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'content/images/club-news-header-bg.jpg' %});" data-stellar-background-ratio="0.5">
+  	<div class="overlay"></div>   
+  	<div class="container">
+    	<div class="row no-gutters slider-text align-items-end">
+      		<div class="col-md-9 ftco-animate pb-5">
+          		<p class="breadcrumbs mb-2"><span class="mr-2"><a href="{% url 'main' %}">Главная <i class="ion-ios-arrow-forward"></i></a></span> <span>Новости <i class="ion-ios-arrow-forward"></i></a></span> </p>
+            	<h1 class="mb-0 bread">Новости</h1>
+      		</div>
+    	</div>
+  	</div>
+</section>
+
+<section class="news-body-fp">
+
+	<h2 class="events-h2">Новости</h2>
+
+    <div class="tournaments">
+        {% for new in news %}
+            <div class="tournament">
+                <a href="{% url 'dnews' new.id %}">
+                    <img src="{% static new.photo|cut:'content/static/' %}" alt="{{ tournament.name }}">
+                </a>
+                <div class="tournament-info">
+                    <div class="tournament-dates">
+                        <div class="tournament-date">{{ new.time_of_publication }}</div>
+                    </div>
+                    <h2 class="tournament-title"><a href="{% url 'dnews' new.id %}">{{ new.name }}</a></h2>
+                    <p>{{ new.autor }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+	
+</section>
+
+<style type="text/css">
+      .tournament {
+        border: none !important;
+      }
+      .go-events {
+        margin: 5%;
+      }
+    </style>
+
+{% endblock %}

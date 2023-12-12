@@ -1,0 +1,39 @@
+{% extends 'content/index.html' %}
+{% load static %}
+
+{% block title %}Турниры{% endblock %}
+{% block main %}
+	<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'content/images/tournaments.jpg' %});" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>   
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+          <div class="col-md-9 ftco-animate pb-5">
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="{% url 'main' %}">Главная <i class="ion-ios-arrow-forward"></i></a></span> <span><a href="{% url 'events' %}">События <i class="ion-ios-arrow-forward"></i></a></span> <span>Турниры <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-0 bread">Турниры</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+	<h2 class="events-h2">Турниры</h2>
+
+    <div class="tournaments">
+        {% for tournament in tournaments %}
+            <div class="tournament">
+                <a href="#">
+                    <img src="{% static tournament.logo|cut:'content/static/' %}" alt="{{ tournament.name }}">
+                </a>
+                <div class="tournament-info">
+                    <div class="tournament-dates">
+                        <div class="tournament-date">{{ tournament.start_date }}</div>
+                        <div class="tournament-date">{{ tournament.end_date }}</div>
+                    </div>
+                    <h2 class="tournament-title"><a href="{% url 'dtour' tournament.id %}">{{ tournament.name }}</a></h2>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}

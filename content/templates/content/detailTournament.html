@@ -1,0 +1,52 @@
+{% extends 'content/index.html' %}
+{% load static %}
+
+{% block title %}
+    {{ tournament.name }}
+{% endblock %}
+
+{% block main %}
+    <h1>{{ tournament.name }}</h1>
+    <p><strong>Start Date:</strong> {{ tournaments.start_date }}</p>
+    <p><strong>End Date:</strong> {{ tournaments.end_date }}</p>
+    <p><strong>Description:</strong> {{ tournaments.description }}</p>
+    <p><strong>Location:</strong> {{ tournaments.location }}</p>
+
+    <h2>Teams:</h2>
+    <ul>
+        {% for team in tournaments.team_set.all %}
+            <li>{{ team.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Matches:</h2>
+    <ul>
+        {% for match in tournaments.match_set.all %}
+            <li>{{ match.team_home.name }} vs. {{ match.team_away.name }} - {{ match.date_time }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Standings:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Team</th>
+                <th>Points</th>
+                <th>Goals For</th>
+                <th>Goals Against</th>
+                <th>Goal Difference</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for standing in tournaments.standing_set.all %}
+                <tr>
+                    <td>{{ standing.team.name }}</td>
+                    <td>{{ standing.points }}</td>
+                    <td>{{ standing.goals_for }}</td>
+                    <td>{{ standing.goals_against }}</td>
+                    <td>{{ standing.goal_difference }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
